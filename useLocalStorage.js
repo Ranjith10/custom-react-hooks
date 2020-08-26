@@ -6,10 +6,17 @@ const useLocalStorage = (key, initialValue) => {
     const [value, setValue] = useState(initialLocalValue)
 
     //  todo - change the useffect logic to a handler that accepts a param
+    //* Converted useEffect to Handler
 
-    useEffect(() => {
-        window.localStorage.setItem(key, initialValue)
-    }, [])
+    //* Return is similar to that of useState
+    const setLocalStorageValue = (value) => {
+        //Update state
+        setValue(value)
+        //Update Local storage value
+        window.localStorage.setItem(key, JSON.stringify(value))
+    }
+
+    return [value, setLocalStorageValue]
 }
 
 export default useLocalStorage
